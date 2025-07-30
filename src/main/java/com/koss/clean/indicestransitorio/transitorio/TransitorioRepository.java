@@ -17,8 +17,8 @@ public interface TransitorioRepository extends JpaRepository<Indice, Integer> {
     SELECT DISTINCT s.id_documento 
     FROM indice i
     INNER JOIN secciones s ON i.id_seccion = s.id_seccion
-    WHERE i.contexto NOT LIKE '<b>Transitorio%' 
-      AND i.contexto NOT LIKE '<b>transitorio%'
+    WHERE i.contexto NOT LIKE '<b>Transitorios de%' 
+      AND i.contexto NOT LIKE '<b>transitorios de%'
       AND s.id_documento IN (
           SELECT d.id_documento 
           FROM documentos d 
@@ -37,7 +37,7 @@ public interface TransitorioRepository extends JpaRepository<Indice, Integer> {
     JOIN Secciones s2 ON s2.idSeccion = s1.idSeccion + 1
                       AND s2.idDocumento = s1.idDocumento
     WHERE s1.idDocumento = :idDocumento\s
-      AND s1.texto LIKE '<b>Transitorio%'
+      AND s1.texto LIKE '<b>Transitorios de%'
     ORDER BY s1.idSeccion
    \s""")
     List<TransitorioDTO> findIndicesInDocument(@Param("idDocumento") Long idDocumento);

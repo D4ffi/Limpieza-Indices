@@ -13,20 +13,23 @@ public interface OtrosDocRepository extends JpaRepository<Indice, Integer> {
      * Este mal y registrar ese documento y la cantidad de indices que estan mal
      */
     @Query(value = """
-    SELECT DISTINCT s.id_documento 
+    SELECT DISTINCT s.id_documento\s
     FROM indice i
     INNER JOIN secciones s ON i.id_seccion = s.id_seccion
-    WHERE (i.contexto LIKE '%<b>Capitulo%</b>%' 
+    WHERE (i.contexto LIKE '%<b>Capitulo%</b>%'\s
            OR i.contexto LIKE '%<b>capitulo%</b>%'
            OR i.contexto LIKE '%<b>Titulo%</b>%'
            OR i.contexto LIKE '%<b>titulo%</b>%')
       AND s.id_documento IN (
-          SELECT d.id_documento 
-          FROM documentos d 
-          WHERE d.tipo_documento != 'Transitorio' 
+          SELECT d.id_documento\s
+          FROM documentos d\s
+          WHERE d.tipo_documento != 'Transitorio'\s
             AND d.tipo_documento != 'Tesis'
       )
-    """, nativeQuery = true)
-    List<Long> findDocumentosConIndicesCapituloTituloIncorrectos();
+   \s""", nativeQuery = true)
+    List<Integer> findDocumentosConIndicesCapituloTituloIncorrectos();
+
+
+
 
 }
