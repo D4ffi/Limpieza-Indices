@@ -9,6 +9,7 @@ import lombok.Setter;
 public abstract class IndiceDTO {
 
     Integer idSeccion;
+    String titulo;
     String contexto;
     Integer idSubindice;
     Integer indentacion;

@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter @Setter
 public abstract class CapituloDTO extends IndiceDTO{
 
-    public CapituloDTO(Integer idSeccion, String contexto, Integer indentacion) {
+    public CapituloDTO(Integer idSeccion,String titulo, String contexto, Integer indentacion) {
         super();
     }
 

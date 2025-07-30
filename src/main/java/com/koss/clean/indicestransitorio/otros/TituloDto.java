@@ -6,8 +6,9 @@ import lombok.Setter;
 @Getter @Setter
 public abstract class TituloDto extends IndiceDTO {
 
-    public TituloDto(Integer idSeccion, String contexto, Integer indentacion) {
+    public TituloDto(Integer idSeccion,String titulo, String contexto, Integer indentacion) {
         this.idSeccion = idSeccion;
+        this.titulo = titulo;
         this.contexto = contexto;
         this.indentacion = indentacion;
     }
