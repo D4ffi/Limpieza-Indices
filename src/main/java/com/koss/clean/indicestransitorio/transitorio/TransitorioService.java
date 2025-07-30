@@ -4,6 +4,8 @@ import com.koss.clean.indicestransitorio.common.Indice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 public class TransitorioService {
@@ -15,9 +17,30 @@ public class TransitorioService {
         this.repository = repository;
     }
 
+    public void flux(boolean ispreview){
+        List<Integer> wrongIndices = findWrongIndexTransitorios();
+        if (wrongIndices.isEmpty()) {
+            logger.info("No hay indices transitorios incorrectos.");
+        }
+            wrongIndices.forEach(id -> {
+                List<TransitorioDTO> transitorios = repository.findIndicesInDocument(id.longValue());
+                List<Indice> indices = new ArrayList<>();
+                if (ispreview){
+                    transitorios.forEach(this::showEditedIndex);
+                } else {
+                    transitorios.forEach(dto -> indices.add(buildIndex(dto)));
+                    indices.forEach(this::save);
+                }
+            });
+    }
+
+    private List<Integer> findWrongIndexTransitorios() {
+        return repository.findWrongIndexTransitorios();
+    }
+
     private final Function<TransitorioDTO, String> concatenarContexto = contexto ->
-            "<b>" + contexto.getIndicador_transitorio().substring(0, 1).toUpperCase()
-            + contexto.getIndicador_transitorio().substring(1) + "</b> " + contexto.getTexto();
+            "<b>" + contexto.getIndicadorTransitorio().substring(0, 1).toUpperCase()
+            + contexto.getIndicadorTransitorio().substring(1) + "</b> " + contexto.getTexto();
 
     public Indice buildIndex(TransitorioDTO dto) {
         Indice indice = new Indice();

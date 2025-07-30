@@ -25,7 +25,7 @@ public interface TransitorioRepository extends JpaRepository<Indice, Integer> {
           WHERE d.tipo_documento = 'Transitorio'
       )
     """, nativeQuery = true)
-    List<Long> findWrongIndexTransitorios();
+    List<Integer> findWrongIndexTransitorios();
 
     /**
      * Buscar dentro del documento cada titulo transitorio, indicar que indicador_transitorio es
