@@ -14,7 +14,5 @@ public abstract class IndiceDTO {
     Integer idSubindice;
     Integer indentacion;
 
-    public abstract void setIndentacion(TituloDto tituloDto);
-    public abstract void setSubIndice(TituloDto tituloDto);
-    public abstract void setSubIndice(CapituloDTO capituloDto);
-}
+    public abstract void setIndentacion(Integer ind);
+    public abstract void setSubIndice(Integer idSeccion);}

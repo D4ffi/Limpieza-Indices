@@ -56,14 +56,6 @@ public class TransitorioService {
         return indice;
     }
 
-    public void save(Indice indice) {
-        if (indice != null && indice.getIdSeccion() != null) {
-            repository.save(indice);
-        } else {
-            throw new IllegalArgumentException("Indice o id de seccion no puede ser nulo");
-        }
-    }
-
     /**
      * =================================
      *          Preview index
